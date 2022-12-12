@@ -1,0 +1,78 @@
+<odoo>
+    <data>
+        <!--    explicit list view definition-->
+        <record model="ir.ui.view" id="library_basic.list">
+            <field name="name">library basic list</field>
+            <field name="model">library_basic.library_basic</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="genre"/>
+                    <field name="author"/>
+                    <field name="number_of_books"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="library_basic.form">
+            <field name="name">library basic course form</field>
+            <field name="model">library_basic.library_basic</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="genre"/>
+                                <field name="author"/>
+                            </group>
+                            <group>
+                                <field name="number_of_books"/>
+                                <field name="description"/>
+                            </group>
+                        </group>
+<!--                        <notebook>-->
+<!--                            <page name="'borrower_ids" string="Borrowers">-->
+<!--                                <field name="borrower_ids"/>-->
+<!--                            </page>-->
+<!--                        </notebook>-->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--    actions opening views on models-->
+        <record model="ir.actions.act_window" id="library_basic.action_window">
+            <field name="name">List of Books</field>
+            <field name="res_model">library_basic.library_basic</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--    server action to the one above-->
+        <record model="ir.actions.server" id="library_basic.action_server">
+            <field name="name">library_basic server</field>
+            <field name="model_id" ref="model_library_basic_library_basic"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = {
+                "type": "ir.actions.act_window",
+                "view_mode": "tree,form",
+                "res_model": model._name,
+                }
+            </field>
+        </record>
+
+        <!--    Top menu item-->
+        <menuitem name="library basic" id="library_basic.menu_root"/>
+
+        <!--    menu categories-->
+        <menuitem name="List Menu" id="library_basic.menu" parent="library_basic.menu_root"/>
+<!--        <menuitem name="List Menu Credit" id="library_basic.menu2" parent="library_basic.menu_root"/>-->
+        <menuitem name="Ex Credit" id="library_basic.menu3" parent="library_basic.menu_root"/>
+
+        <!--    actions-->
+        <menuitem name="List of Books" id="library_basic.menu_list" parent="library_basic.menu"
+                  action="library_basic.action_window"/>
+    </data>
+</odoo>

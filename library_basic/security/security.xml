@@ -1,0 +1,8 @@
+<odoo>
+    <record id="group_books_read" model="res.groups">
+        <field name="name">Library Access Read</field>
+    </record>
+    <record id="group_books_manager" model="res.groups">
+        <field name="name">Library Access Manager</field>
+    </record>
+</odoo>

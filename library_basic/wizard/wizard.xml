@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<record model="ir.ui.view" id="library_basic.wizard">
+		<field name="name">library_basic wizard</field>
+		<field name="model">library_basic.wizard_borrower</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+						<field name="books_id"/>
+						<field name="borrower_ids"/>
+					</group>
+					<footer>
+						<button name="subscribe" type="object"
+						        string="Subscribe" class="oe_highlight"/>or
+						<button special="cancel" string="Cancel"/>
+					</footer>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	
+	<act_window id="launch_wizard_borrower"
+	            name="Generate Borrower"
+	            binding_model="library_basic.library_basic"
+	            res_model="library_basic.wizard_borrower"
+	            view_mode="form"
+	            target="new"/>
+</odoo>

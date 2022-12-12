@@ -1,0 +1,123 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="library_basic.excredit_list">
+			<field name="name">library_basic credit book list</field>
+			<field name="model">library_basic.excredit</field>
+			<field name="arch" type="xml">
+				<tree string="Credit Books List">
+					<field name="borrower"/>
+					<field name="duration" invisible="1"/>
+					<field name="start_date"/>
+					<field name="end_date"/>
+					<field name="duration"/>
+					<field name="description"/>
+				</tree>
+			</field>
+		</record>
+
+		<!--		Form View-->
+		<record model="ir.ui.view" id="library_basic.excredit_form">
+			<field name="name">library_basic credit book form</field>
+			<field name="model">library_basic.excredit</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+							<group>
+								<field name="borrower"/>
+								<field name="start_date"/>
+							</group>
+							<group>
+								<field name="duration"/>
+								<field name="description"/>
+							</group>
+						</group>
+						<notebook>
+							<page name="'books_ids" string="Books">
+								<field name="books_ids"/>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!--		Graph View-->
+		<record model="ir.ui.view" id="excredit_graph_view">
+			<field name="name">excredit.graph</field>
+			<field name="model">library_basic.excredit</field>
+			<field name="arch" type="xml">
+				<graph string="Borrower books">
+					<field name="borrower"/>
+					<field name="borrowers_count" type="measure"/>
+				</graph>
+			</field>
+		</record>
+
+		<!--		Calendar View-->
+		<record model="ir.ui.view" id="session_calendar_view">
+			<field name="name">excredit.calendar</field>
+			<field name="model">library_basic.excredit</field>
+			<field name="arch" type="xml">
+				<calendar string="Credit Calendar" date_start="start_date" date_stop="end_date" color="user_id">
+					<field name="borrower"/>
+				</calendar>
+			</field>
+		</record>
+
+		<!--		Kanban View-->
+		<record model="ir.ui.view" id="excredit_kanban_view">
+			<field name="name">excredit.kanban</field>
+			<field name="model">library_basic.excredit</field>
+			<field name="arch" type="xml">
+				<kanban default_group_by="book_id">
+					<field name="color"/>
+					<templates>
+						<t t-name="kanban-box">
+							<div t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}}
+											   oe_kanban_global_click_edit oe_semantic_html_override
+											   oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
+								<div class="o_dropdown_kanban dropdown" t-if="!selection_mode" groups="base.group_user">
+									<a role="button" class="dropdown-toggle o-no-caret btn" data-toggle="dropdown"
+									   data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+										<span class="fa fa-bars"/>
+									</a>
+									<div class="dropdown-menu" role="menu">
+										<a t-if="widget.editable" type="delete" class="dropdown-item">Delete</a>
+										<a t-if="widget.editable" role="menuitem" type="edit" class="dropdown-item">
+											Edit
+										</a>
+										<div role="separator" class="dropdown-divider"/>
+										<ul class="oe_kanban_colorpicker" data-field="color"/>
+									</div>
+								</div>
+								<div t-attf-class="oe_kanban_content">
+									<!--title-->
+									Borrower of Books:
+									<field name="borrower"/>
+									<br/>
+									Start Date:
+									<field name="start_date"/>
+									<br/>
+									Duration:
+									<field name="duration"/>
+								</div>
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+
+		<!--    actions opening views on models-->
+		<record model="ir.actions.act_window" id="library_basic.excredit_action_window">
+			<field name="name">Book Borrowing List</field>
+			<field name="res_model">library_basic.excredit</field>
+			<field name="view_mode">tree,form,calendar,graph,kanban</field>
+		</record>
+
+		<!--    actions-->
+		<menuitem name="Book Borrower List" id="library_basic.menu_excredit_list" parent="library_basic.menu3"
+		          action="library_basic.excredit_action_window"/>
+	</data>
+</odoo>

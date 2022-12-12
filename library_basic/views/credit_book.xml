@@ -1,0 +1,52 @@
+<!--<odoo>-->
+<!--    <data>-->
+<!--        <record model="ir.ui.view" id="library_basic.credit_book_list">-->
+<!--            <field name="name">library_basic credit book list</field>-->
+<!--            <field name="model">library_basic.credit_book</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <tree string="Credit Books List">-->
+<!--                    <field name="name"/>-->
+<!--                    <field name="book"/>-->
+<!--                    <field name="genre"/>-->
+<!--                    <field name="author"/>-->
+<!--                    <field name="borrower"/>-->
+<!--                    <field name="description"/>-->
+<!--                </tree>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        <record model="ir.ui.view" id="library_basic.credit_book_form">-->
+<!--            <field name="name">library_basic credit book form</field>-->
+<!--            <field name="model">library_basic.credit_book</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form>-->
+<!--                    <sheet>-->
+<!--                        <group>-->
+<!--                            <group>-->
+<!--                                <field name="name"/>-->
+<!--                                <field name="book"/>-->
+<!--                                <field name="genre"/>-->
+<!--                                <field name="author"/>-->
+<!--                            </group>-->
+<!--                            <group>-->
+<!--                                <field name="borrower"/>-->
+<!--                                <field name="description"/>-->
+<!--                            </group>-->
+<!--                        </group>-->
+<!--                    </sheet>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash;    actions opening views on models&ndash;&gt;-->
+<!--        <record model="ir.actions.act_window" id="library_basic.credit_book_action_window">-->
+<!--            <field name="name">List of credit books</field>-->
+<!--            <field name="res_model">library_basic.credit_book</field>-->
+<!--            <field name="view_mode">tree,form</field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash;    actions&ndash;&gt;-->
+<!--        <menuitem name="Book Credit List" id="library_basic.menu_credit_book_list" parent="library_basic.menu2"-->
+<!--                  action="library_basic.credit_book_action_window"/>-->
+<!--    </data>-->
+<!--</odoo>-->
